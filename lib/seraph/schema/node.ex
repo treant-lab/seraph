@@ -119,6 +119,18 @@ defmodule Seraph.Schema.Node do
             __type__: String.t()
           }
 
+    # defimpl Phoenix.HTML.Safe do
+    #   def to_iodata(_) do
+    #     "[]"
+    #   end
+    # end
+
+    defimpl Jason.Encoder do
+      def encode(_, opts) do
+        Jason.Encode.map(%{}, opts)
+      end
+    end
+
     defimpl Inspect do
       @spec inspect(Seraph.Schema.Node.NotLoaded.t(), Inspect.Opts.t()) :: String.t()
       def inspect(not_loaded, _opts) do
@@ -181,9 +193,7 @@ defmodule Seraph.Schema.Node do
         if not Regex.match?(~r/^([A-Z]{1}[a-z0-9]*)+$/, primary_label) or
              String.upcase(primary_label) == primary_label do
           raise ArgumentError,
-                "[#{Atom.to_string(__MODULE__)}] node label must be CamelCased. Received: #{
-                  primary_label
-                }."
+                "[#{Atom.to_string(__MODULE__)}] node label must be CamelCased. Received: #{primary_label}."
         end
 
         metadata = %Metadata{
@@ -307,20 +317,20 @@ defmodule Seraph.Schema.Node do
   end
 
   defp do_check_relationship_schema(module, data) do
-    unless data.schema.__schema__(:type) == data.type do
-      raise ArgumentError,
-            "[#{inspect(module)}] Defined type #{data.type} doesn't match the one defined in #{
-              inspect(data.schema.__schema__(:type))
-            }"
-    end
+    # unless data.schema.__schema__(:type) == data.type do
+    #   raise ArgumentError,
+    #         "[#{inspect(module)}] Defined type #{data.type} doesn't match the one defined in #{
+    #           inspect(data.schema.__schema__(:type))
+    #         }"
+    # end
 
-    if not is_nil(data.cardinality) and
-         data.cardinality != data.schema.__schema__(:cardinality)[data.direction] do
-      raise ArgumentError,
-            "[#{inspect(module)}] Defined cardinality #{data.cardinality} doesn't match the one defined in #{
-              inspect(data.schema.__schema__(:type))
-            }"
-    end
+    # if not is_nil(data.cardinality) and
+    #      data.cardinality != data.schema.__schema__(:cardinality)[data.direction] do
+    #   raise ArgumentError,
+    #         "[#{inspect(module)}] Defined cardinality #{data.cardinality} doesn't match the one defined in #{
+    #           inspect(data.schema.__schema__(:type))
+    #         }"
+    # end
   end
 
   @doc """
@@ -463,9 +473,7 @@ defmodule Seraph.Schema.Node do
   def add_relationship(module, direction, type, related_node, name, relationship_module, opts) do
     if not Regex.match?(~r/^[A-Z_]*$/, type) do
       raise ArgumentError,
-            "[#{inspect(module)}] Relationship type must conform the format [A-Z_]* [Received: #{
-              type
-            }]"
+            "[#{inspect(module)}] Relationship type must conform the format [A-Z_]* [Received: #{type}]"
     end
 
     type_field = type |> String.downcase() |> String.to_atom()
@@ -485,9 +493,7 @@ defmodule Seraph.Schema.Node do
 
     if exists? do
       raise ArgumentError,
-            "Relationship from [#{inspect(info.start_node)}] to [#{inspect(info.end_node)}] with type [#{
-              inspect(info.type)
-            }] already exists."
+            "Relationship from [#{inspect(info.start_node)}] to [#{inspect(info.end_node)}] with type [#{inspect(info.type)}] already exists."
     end
 
     Module.put_attribute(module, :relationships_list, {type_field, info})
@@ -509,7 +515,7 @@ defmodule Seraph.Schema.Node do
 
     attr_name = String.to_atom(Atom.to_string(direction) <> "_relationships")
 
-    if not (type_field in Module.get_attribute(module, attr_name)) do
+    if type_field not in Module.get_attribute(module, attr_name) do
       Module.put_attribute(module, attr_name, type_field)
     end
 

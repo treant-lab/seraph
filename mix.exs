@@ -14,6 +14,10 @@ defmodule Seraph.MixProject do
       start_permanent: Mix.env() == :prod,
       docs: docs(),
       deps: deps(),
+      build_path: "../../_build",
+      config_path: "../../config/config.exs",
+      deps_path: "../../deps",
+      lockfile: "../../mix.lock",
       elixirc_paths: elixirc_paths(Mix.env()),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -107,7 +111,6 @@ defmodule Seraph.MixProject do
       {:uuid, "~> 1.1"},
       {:inflex, "~> 2.0.0"},
       # dev and test only deps
-      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.19", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false},
       {:excoveralls, "~> 0.10", only: :test}

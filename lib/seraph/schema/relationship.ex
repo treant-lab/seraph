@@ -141,6 +141,12 @@ defmodule Seraph.Schema.Relationship do
   end
 
   defmodule NotLoaded do
+    defimpl Jason.Encoder do
+      def encode(_, opts) do
+        Jason.Encode.map(%{}, opts)
+      end
+    end
+
     @moduledoc """
     Struct returned by relationships when they are not loaded.
 
@@ -226,9 +232,7 @@ defmodule Seraph.Schema.Relationship do
 
         if not Regex.match?(~r/^([A-Z]{1}[A-Z0-9_]*)+$/, rel_type) do
           raise ArgumentError,
-                "[#{Atom.to_string(__MODULE__)}] Relationship type must conform the format ^([A-Z]{1}[A-Z0-9_]*)+$ [Received: #{
-                  rel_type
-                }]"
+                "[#{Atom.to_string(__MODULE__)}] Relationship type must conform the format ^([A-Z]{1}[A-Z0-9_]*)+$ [Received: #{rel_type}]"
         end
 
         metadata = %Metadata{
