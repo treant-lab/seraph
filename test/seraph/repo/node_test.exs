@@ -713,7 +713,9 @@ defmodule Seraph.Repo.NodeTest do
       }
 
       assert {:ok, merged_node} =
-               TestRepo.Node.merge(User, %{uuid: "some-uuid"}, on_match: {data, &User.changeset/2})
+               TestRepo.Node.merge(User, %{uuid: "some-uuid"},
+                 on_match: {data, &User.changeset/2}
+               )
 
       cql = """
       MATCH

@@ -323,9 +323,7 @@ defmodule Seraph.Query.Builder.Entity.Relationship do
       node_data
     else
       message = """
-      `#{inspect(node_data.queryable)}` is not a valid #{inspect(node_type)} for `#{
-        inspect(rel_queryable)
-      }`.
+      `#{inspect(node_data.queryable)}` is not a valid #{inspect(node_type)} for `#{inspect(rel_queryable)}`.
       It should be a `#{inspect(node_queryable)}`.
       """
 

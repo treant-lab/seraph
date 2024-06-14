@@ -318,8 +318,8 @@ defmodule Seraph.Repo.Node.Queryable do
       1 ->
         List.first(results)["n"]
 
-      count ->
-        raise Seraph.MultipleNodesError, queryable: queryable, count: count, params: clauses
+      _ ->
+        Enum.map(results, & &1["n"])
     end
   end
 

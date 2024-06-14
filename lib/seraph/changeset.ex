@@ -474,9 +474,7 @@ defmodule Seraph.Changeset do
                 changeset
                 |> add_error(
                   linked_node,
-                  "#{inspect(linked_node)} must be a #{
-                    Atom.to_string(relationship.__schema__(linked_node))
-                  }."
+                  "#{inspect(linked_node)} must be a #{Atom.to_string(relationship.__schema__(linked_node))}."
                 )
             end
 
@@ -484,9 +482,7 @@ defmodule Seraph.Changeset do
             changeset
             |> add_error(
               linked_node,
-              "#{inspect(linked_node)} must be a #{
-                Atom.to_string(relationship.__schema__(linked_node))
-              }."
+              "#{inspect(linked_node)} must be a #{Atom.to_string(relationship.__schema__(linked_node))}."
             )
         end
 

@@ -638,7 +638,9 @@ defmodule Seraph.Repo.RelationshipTest do
       post = add_fixtures(:end_node)
 
       assert {:ok, rel_wrote} =
-               TestRepo.Relationship.merge(Wrote, user, post, on_create: {%{}, &Wrote.changeset/2})
+               TestRepo.Relationship.merge(Wrote, user, post,
+                 on_create: {%{}, &Wrote.changeset/2}
+               )
 
       assert %Seraph.Test.UserToPost.Wrote{
                type: "WROTE",

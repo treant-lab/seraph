@@ -169,9 +169,7 @@ defmodule Seraph.Query.Builder.Match do
       {:ok, %Entity.Node{queryable: queryable}} ->
         if queryable != node_data.queryable do
           message =
-            "identifier `#{identifier}` for schema `#{inspect(node_data.queryable)}` is already used for schema `#{
-              inspect(queryable)
-            }`"
+            "identifier `#{identifier}` for schema `#{inspect(node_data.queryable)}` is already used for schema `#{inspect(queryable)}`"
 
           raise ArgumentError, message
         end

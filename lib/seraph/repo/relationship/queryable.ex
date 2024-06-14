@@ -33,9 +33,7 @@ defmodule Seraph.Repo.Relationship.Queryable do
           "get(#{inspect(start_struct_or_data)}, #{inspect(end_struct_or_data)})"
 
         :get_by ->
-          "get_by(#{inspect(start_struct_or_data)}, #{inspect(end_struct_or_data)}, #{
-            inspect(rel_properties)
-          })"
+          "get_by(#{inspect(start_struct_or_data)}, #{inspect(end_struct_or_data)}, #{inspect(rel_properties)})"
       end
 
     %Seraph.Query{
@@ -70,9 +68,7 @@ defmodule Seraph.Repo.Relationship.Queryable do
       )
 
     literal =
-      "create(%#{queryable}{start: #{inspect(start_struct_or_data)}, end:#{
-        inspect(end_struct_or_data)
-      }, properties: #{inspect(rel_properties)}})"
+      "create(%#{queryable}{start: #{inspect(start_struct_or_data)}, end:#{inspect(end_struct_or_data)}, properties: #{inspect(rel_properties)}})"
 
     identifiers = %{
       "rel" => relationship,
@@ -133,9 +129,7 @@ defmodule Seraph.Repo.Relationship.Queryable do
       )
 
     literal =
-      "create(%#{queryable}{start: #{inspect(start_struct_or_data)}, end:#{
-        inspect(end_struct_or_data)
-      }, properties: #{inspect(rel_properties)}})"
+      "create(%#{queryable}{start: #{inspect(start_struct_or_data)}, end:#{inspect(end_struct_or_data)}, properties: #{inspect(rel_properties)}})"
 
     identifiers = %{
       "rel" => relationship,

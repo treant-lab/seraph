@@ -1246,9 +1246,7 @@ defmodule Seraph.Query do
           case id_field in changed_properties do
             true ->
               message =
-                "[MERGE/SET] Identifier field `#{id_field}` must NOT be changed on Node `#{
-                  change.identifier
-                }` for `#{queryable}`"
+                "[MERGE/SET] Identifier field `#{id_field}` must NOT be changed on Node `#{change.identifier}` for `#{queryable}`"
 
               {:error, message}
 
@@ -1261,9 +1259,7 @@ defmodule Seraph.Query do
 
                 _ ->
                   message =
-                    "[MERGE/SET] Merge keys `#{inspect(merge_keys)} should not be changed on Node `#{
-                      change.identifier
-                    }` for `#{queryable}`"
+                    "[MERGE/SET] Merge keys `#{inspect(merge_keys)} should not be changed on Node `#{change.identifier}` for `#{queryable}`"
 
                   {:error, message}
               end
@@ -1282,9 +1278,7 @@ defmodule Seraph.Query do
 
           false ->
             message =
-              "[CREATE / MERGE] Identifier field `#{id_field}` must be set on Node `#{
-                change.identifier
-              }` for `#{change.queryable}`"
+              "[CREATE / MERGE] Identifier field `#{id_field}` must be set on Node `#{change.identifier}` for `#{change.queryable}`"
 
             {:error, message}
         end
