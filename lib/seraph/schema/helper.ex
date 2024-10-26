@@ -14,7 +14,8 @@ defmodule Seraph.Schema.Helper do
     :naive_datetime,
     :naive_datetime_usec,
     :utc_datetime,
-    :utc_datetime_usec
+    :utc_datetime_usec,
+    {:array, :string}
   ]
 
   @valid_seraph_types [
