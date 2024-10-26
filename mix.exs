@@ -106,7 +106,7 @@ defmodule Seraph.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:bolt_sips, "~> 2.0"},
+      {:bolt_sips, git: "git@github.com:treant-lab/bolt_sips.git", brach: "master"},
       {:ecto, "~>3.5"},
       {:uuid, "~> 1.1"},
       {:inflex, "~> 2.0.0"},

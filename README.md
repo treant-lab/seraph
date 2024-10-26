@@ -4,10 +4,10 @@
 
 Docs: https://hexdocs.pm/seraph
 
-Seraph is a tool to use Neo4j in Elixir project in a graph way.  
-It is heavily inspired by Ecto and OGM projects (in Java and python in particular).  
+Seraph is a tool to use Neo4j in Elixir project in a graph way.
+It is heavily inspired by Ecto and OGM projects (in Java and python in particular).
 
-The goal is to provide an API to interact easily with one or more Neo4j database.  
+The goal is to provide an API to interact easily with one or more Neo4j database.
 
 ## Installation
 
@@ -22,6 +22,7 @@ end
 ```
 
 # Configuration
+
 ```
 # In your config/config.exs file
 config :my_app, ecto_repos: [Sample.Repo]
@@ -64,3 +65,4 @@ end
 - Push to the branch (`git push origin my-new-feature`)
 - Create new Pull Request
 
+https://hexdocs.pm/seraph/Seraph.Schema.Node.html#content
