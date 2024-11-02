@@ -27,6 +27,7 @@ defmodule Seraph.Repo.Node.Repo do
         """
         def create(struct_or_changeset, opts \\ []) do
           Node.Schema.create(@repo, struct_or_changeset, opts)
+          |> Domain.Bolt.Watcher.watch(:create)
         end
 
         @doc """
@@ -39,6 +40,7 @@ defmodule Seraph.Repo.Node.Repo do
                 Seraph.Schema.Node.t() | Seraph.Schema.Relationship.t()
         def create!(struct_or_changeset, opts \\ []) do
           Node.Schema.create!(@repo, struct_or_changeset, opts)
+          |> Domain.Bolt.Watcher.watch(:create)
         end
 
         @doc """
