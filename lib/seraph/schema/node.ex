@@ -102,6 +102,12 @@ defmodule Seraph.Schema.Node do
             primary_label: String.t(),
             schema: module
           }
+
+    defimpl Jason.Encoder do
+      def encode(value, opts) do
+        Jason.Encode.map(value, opts)
+      end
+    end
   end
 
   defmodule NotLoaded do
@@ -435,13 +441,13 @@ defmodule Seraph.Schema.Node do
 
     name_str = Atom.to_string(name)
 
-    if not Regex.match?(
-         ~r/^(?:[a-z]{1}[a-z0-9]{1,}[A-Z]{1}[a-z0-9]*)+$|^([a-z]{1}[a-z0-9]*)$/,
-         name_str
-       ) do
-      raise ArgumentError,
-            "[#{Atom.to_string(module)}] property must be camelCased. Received: #{name_str}."
-    end
+    # if not Regex.match?(
+    #      ~r/^(?:[a-z]{1}[a-z0-9]{1,}[A-Z]{1}[a-z0-9]*)+$|^([a-z]{1}[a-z0-9]*)$/,
+    #      name_str
+    #    ) do
+    #   raise ArgumentError,
+    #         "[#{Atom.to_string(module)}] property must be camelCased. Received: #{name_str}."
+    # end
 
     if List.keyfind(Module.get_attribute(module, :properties), name, 0) do
       raise ArgumentError, "[#{inspect(module)}] Field #{inspect(name)} already exists."
